@@ -43,6 +43,13 @@ int main (int argc, char *argv[]) {
 
 	//Task 1:
 	//Run the server process as a child of the client process
+	pid_t clientPid = fork();
+    char* clientArgs[] = {(char*) "./server", nullptr};
+	if(clientPid == 0)
+	{
+		execvp(clientArgs[0], clientArgs);
+	}
+
 
     FIFORequestChannel chan("control", FIFORequestChannel::CLIENT_SIDE);
 
